@@ -1,0 +1,338 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.seu.cose.easytrip.fragment.MyInfoFragment"
+    android:weightSum="1"
+    android:background="@color/windowsBackground"
+    >
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:id="@+id/set_photo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:background="@android:color/background_light"
+        >
+
+        <ImageView
+            android:id="@+id/head_image"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@color/textColor"
+            android:src="@drawable/ic_blank_head" />
+
+        <LinearLayout
+            android:id="@+id/name_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:textSize="20sp"
+                android:textColor="@color/textColor"
+                android:text="用户名"/>
+
+            <TextView
+                android:id="@+id/user_ID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:text="账号" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/show_friendship"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@android:color/background_light"
+        android:divider="@drawable/linearlayout_divider"
+        android:showDividers="middle">
+
+        <LinearLayout
+            android:id="@+id/article"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.33"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/article_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="文章"
+                android:textColor="@color/textColor"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/article_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="0" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/followee"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.33"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/followee_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="关注"
+                android:textColor="@color/textColor"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/followee_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="0" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fans"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.33"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/fans_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="粉丝"
+                android:textColor="@color/textColor"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/fans_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="0" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:id="@+id/myinfo_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:divider="@drawable/linearlayout_divider"
+        android:showDividers="middle">
+
+        <LinearLayout
+            android:id="@+id/set_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/background_light"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/message_image"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_message_myinfo"/>
+
+            <TextView
+                android:id="@+id/message_list"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="2dp"
+                android:text="消息列表"
+                android:textColor="@color/textColor"/>
+
+            <ImageView
+                android:id="@+id/messsage_next"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_next"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/friend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/background_light"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:weightSum="1">
+
+            <ImageView
+                android:id="@+id/friend_list_image"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_friend_myinfo"/>
+
+            <TextView
+                android:id="@+id/friend_list"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="2dp"
+                android:text="我的好友"
+                android:textColor="@color/textColor" />
+
+            <ImageView
+                android:id="@+id/friend_next"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_next" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/collection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/background_light"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/collection_image"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_collection_myinfo"/>
+
+            <TextView
+                android:id="@+id/collection_list"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="2dp"
+                android:text="我的收藏"
+                android:textColor="@color/textColor" />
+
+            <ImageView
+                android:id="@+id/collection_next"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_next" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/set"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:divider="@drawable/linearlayout_divider"
+        android:orientation="vertical"
+        android:showDividers="middle">
+
+        <LinearLayout
+            android:id="@+id/settings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/background_light"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/settings_image"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_settings_myinfo" />
+
+            <TextView
+                android:id="@+id/setings_list"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="2dp"
+                android:text="设置"
+                android:textColor="@color/textColor" />
+
+            <ImageView
+                android:id="@+id/settings_next"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_next" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/about"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/background_light"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/about_image"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_about_myinfo"/>
+
+            <TextView
+                android:id="@+id/about_ours"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="2dp"
+                android:text="关于我们"
+                android:textColor="@color/textColor" />
+
+            <ImageView
+                android:id="@+id/about_next"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_next" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/quit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="5dp"
+        android:background="@android:color/holo_red_dark"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/myinfo_quit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:textSize="16dp"
+            android:text="退出"
+            android:gravity="center"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+
+</LinearLayout>
