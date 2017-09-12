@@ -1,4 +1,4 @@
-package com.seu.cose.easytrip.fragment;
+package com.seu.cose.easytrip.fragment.main;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -81,9 +81,8 @@ public class HomeFragment extends BaseAppFragment {
         /**/
         image_desc.setText(imageDes[0]);
 
-        for (int i=0; i<3; i++){
-            Integer id = mCardImageId[i];
-            cards.add(new CardViewContainer((imageDes[i]), mCardIntro[i], id.toString()));
+        for (int i=0; i<5; i++){
+            cards.add(new CardViewContainer((imageDes[i]), mCardIntro[i], mCardImageId[i]));
         }
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));

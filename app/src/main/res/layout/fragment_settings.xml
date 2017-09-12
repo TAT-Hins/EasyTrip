@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/windowsBackground"
+    android:divider="@drawable/linearlayout_divider"
+    android:showDividers="middle">
+
+    <LinearLayout
+
+        android:id="@+id/change_psd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/background_light"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:padding="10dp">
+
+
+        <TextView
+            android:id="@+id/change_psd_text"
+            android:layout_width="335dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="2dp"
+            android:text="修改密码"
+            android:textColor="@color/textColor" />
+
+        <ImageView
+            android:id="@+id/change_psd_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_next"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:id="@+id/change_account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/background_light"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+
+        <TextView
+            android:id="@+id/change_account_text"
+            android:layout_width="335dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="2dp"
+            android:text="切换账号"
+            android:textColor="@color/textColor" />
+
+        <ImageView
+            android:id="@+id/change_account_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_next"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:id="@+id/voice_close"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/background_light"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:layout_marginTop="10dp">
+
+
+        <TextView
+            android:id="@+id/voice_close_text"
+            android:layout_width="310dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:text="声音"
+            android:textColor="@color/textColor"
+            android:layout_weight="0.94" />
+
+        <Switch
+            android:id="@+id/voice_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|right" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

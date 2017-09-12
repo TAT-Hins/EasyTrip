@@ -1,9 +1,10 @@
 package com.seu.cose.easytrip.Override;
 
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.view.ViewGroup;
+
+import com.seu.cose.xutils3.BaseAppFragment;
 
 import java.util.List;
 
@@ -13,10 +14,10 @@ import java.util.List;
 
 public class FragAdapter extends FragmentStatePagerAdapter {
 
-    private List<Fragment> mFragments;
+    private List<BaseAppFragment> mFragments;
     private FragmentManager fragmentManager;
 
-    public FragAdapter(FragmentManager fm, List<Fragment> fragments) {
+    public FragAdapter(FragmentManager fm, List<BaseAppFragment> fragments) {
         super(fm);
         // TODO Auto-generated constructor stub
         mFragments = fragments;
@@ -24,7 +25,7 @@ public class FragAdapter extends FragmentStatePagerAdapter {
     }
 
     @Override
-    public Fragment getItem(int arg0) {
+    public BaseAppFragment getItem(int arg0) {
         // TODO Auto-generated method stub
         return mFragments.get(arg0);
     }
@@ -37,7 +38,7 @@ public class FragAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        Fragment fragment = mFragments.get(position);
+        BaseAppFragment fragment = mFragments.get(position);
         fragmentManager.beginTransaction().hide(fragment).commit();
     }
 

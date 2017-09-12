@@ -4,12 +4,12 @@ package com.seu.cose.xutils3.pojo;
  * Created by Hins on 2017/9/11,011.
  */
 
-public class ImageBean {
+public class ImageCardView {
 
     private int img;
     private String keyword;
 
-    public ImageBean (int img, String kwd){
+    public ImageCardView(int img, String kwd){
         this.img = img;
         this.keyword = kwd;
     }

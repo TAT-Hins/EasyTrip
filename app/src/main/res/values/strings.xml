@@ -11,13 +11,15 @@
 
     <string name="title_activity_main">EasyTrip</string>
     <string name="title_activity_login">登录</string>
+    <string name="title_activity_article">编写文章</string>
 
     <!-- Strings related to login -->
     <string name="prompt_userName">用户名</string>
     <string name="prompt_userPswd">密码</string>
+    <string name="prompt_account">登录账号</string>
     <string name="action_sign_in">登录</string>
-    <string name="action_sign_in_short">登录</string>
-    <string name="error_invalid_username">用户名不正确！</string>
+    <string name="action_register">注册</string>
+    <string name="error_invalid_account">用户名不正确！</string>
     <string name="error_invalid_password">密码太短啦！请输入至少6位的密码</string>
     <string name="error_incorrect_password">密码不正确！</string>
     <string name="error_field_required">必须填写该项！</string>
@@ -26,6 +28,9 @@
     <string name="title_activity_register">注册</string>
     <string name="server_url">http://223.3.91.162:8080/EasyTrip</string>
 
-    <string name="aboutinfo">欢迎使用EasyTrip！\n这是RUA团队的第一个作品，希望大家喜欢！RUA！</string>
+    <string name="aboutinfo">Copyright © 2017\nTeam RUA of SEU COSE\nAll Rights Reserved.\n\n欢迎使用EasyTrip！\n这是RUA团队的第一个作品，希望大家喜欢！RUA！</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

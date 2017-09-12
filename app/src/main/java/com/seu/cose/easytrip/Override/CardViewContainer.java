@@ -8,9 +8,10 @@ import android.content.Context;
 
 public class CardViewContainer {
 
-    String title, intro, imageId;
+    String title, intro;
+    int imageId;
 
-    public CardViewContainer(String mTitle, String mIntro, String mImageId){
+    public CardViewContainer(String mTitle, String mIntro, int mImageId){
         this.title = mTitle;
         this.intro = mIntro;
         this.imageId = mImageId;
@@ -19,7 +20,7 @@ public class CardViewContainer {
     public int getImageResourceId(Context context){
 
         try{
-            return Integer.parseInt(this.imageId);
+            return imageId;
             //return context.getResources().getIdentifier(this.imageId, "drawable", context.getPackageName());
         }catch(Exception e){
             e.printStackTrace();

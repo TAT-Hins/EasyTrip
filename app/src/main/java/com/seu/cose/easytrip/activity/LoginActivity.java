@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.seu.cose.easytrip.Override.GsonPaserUtils;
 import com.seu.cose.easytrip.R;
 import com.seu.cose.xutils3.BaseAppCompatActivity;
+import com.seu.cose.xutils3.EasyTripApplication;
 import com.seu.cose.xutils3.XUtilsTools;
 import com.seu.cose.xutils3.pojo.UserLogin;
 
@@ -45,10 +46,6 @@ public class LoginActivity extends BaseAppCompatActivity {
     private static final int REQUEST_READ_CONTACTS = 0;
     private static final String TAG = "LoginActivity";
 
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
     private static final String[] DUMMY_CREDENTIALS = new String[]{
             "foo@example.com:hello", "bar@example.com:world"
     };
@@ -57,8 +54,8 @@ public class LoginActivity extends BaseAppCompatActivity {
      */
 
     // UI references.
-    @ViewInject(R.id.name_login)
-        private AutoCompleteTextView mUserNameView;
+    @ViewInject(R.id.account_login)
+        private AutoCompleteTextView mAccountView;
     @ViewInject(R.id.password_login)
         private EditText mPasswordView;
     @ViewInject(R.id.login_progress)
@@ -82,8 +79,8 @@ public class LoginActivity extends BaseAppCompatActivity {
             }
         });
 
-        Button mUserNameSignInButton = (Button) findViewById(R.id.username_sign_in_button);
-        mUserNameSignInButton.setOnClickListener(new OnClickListener() {
+        Button mAccountSignInButton = (Button) findViewById(R.id.account_sign_in_button);
+        mAccountSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 attemptLogin();
@@ -100,11 +97,11 @@ public class LoginActivity extends BaseAppCompatActivity {
     private void attemptLogin() {
 
         // Reset errors.
-        mUserNameView.setError(null);
+        mAccountView.setError(null);
         mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
-        String userName = mUserNameView.getText().toString();
+        String userAccount = mAccountView.getText().toString();
         String userPswd = mPasswordView.getText().toString();
 
         boolean cancel = false;
@@ -117,14 +114,13 @@ public class LoginActivity extends BaseAppCompatActivity {
             cancel = true;
         }
 
-        // Check for a valid username address.
-        if (TextUtils.isEmpty(userName)) {
-            mUserNameView.setError(getString(R.string.error_field_required));
-            focusView = mUserNameView;
+        if (TextUtils.isEmpty(userAccount)) {
+            mAccountView.setError(getString(R.string.error_field_required));
+            focusView = mAccountView;
             cancel = true;
-        } else if (!isUserNameValid(userName)) {
-            mUserNameView.setError(getString(R.string.error_invalid_username));
-            focusView = mUserNameView;
+        } else if (!isAccountValid(userAccount)) {
+            mAccountView.setError(getString(R.string.error_invalid_account));
+            focusView = mAccountView;
             cancel = true;
         }
 
@@ -136,13 +132,13 @@ public class LoginActivity extends BaseAppCompatActivity {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            loginToServer(userName, userPswd);
+            loginToServer(userAccount, userPswd);
         }
     }
 
-    private boolean isUserNameValid(String username) {
+    private boolean isAccountValid(String account) {
         //TODO: Replace this with your own logic
-        return username.length() <= 20 ;
+        return account.length() <= 20 ;
     }
 
     private boolean isPasswordValid(String password) {
@@ -179,10 +175,10 @@ public class LoginActivity extends BaseAppCompatActivity {
         });
     }
 
-    private void loginToServer(String name, String password){
+    private void loginToServer(String account, String password){
         Map<String, String> params = new HashMap<>();
         params.put("password", password);
-        params.put("account", name);
+        params.put("account", account);
         XUtilsTools.Post(getResources().getString(R.string.server_url) + "/userLogin/login", params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {

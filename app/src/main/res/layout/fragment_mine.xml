@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.seu.cose.easytrip.fragment.MyInfoFragment"
+    tools:context="com.seu.cose.easytrip.fragment.main.MineFragment"
     android:weightSum="1"
     android:background="@color/windowsBackground"
     >
@@ -324,7 +324,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/myinfo_quit"
+            android:id="@+id/quitApp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"

@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.seu.cose.easytrip.R;
-import com.seu.cose.xutils3.pojo.ImageBean;
+import com.seu.cose.xutils3.pojo.ImageCardView;
 
 import java.util.List;
 
@@ -21,9 +21,9 @@ public class WaterFallAdapter extends RecyclerView.Adapter<WaterFallAdapter.Wate
 
     private Context mContext;
     private LayoutInflater mInflater;
-    private List<ImageBean> imageBeen;
+    private List<ImageCardView> imageBeen;
 
-    public WaterFallAdapter(Context context, List<ImageBean> list){
+    public WaterFallAdapter(Context context, List<ImageCardView> list){
         mContext = context;
         mInflater = LayoutInflater.from(context);
         imageBeen = list;

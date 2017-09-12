@@ -1,11 +1,12 @@
 package com.seu.cose.easytrip.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
+import android.view.KeyEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,13 +15,19 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 //import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.seu.cose.easytrip.Override.FragAdapter;
 import com.seu.cose.easytrip.Override.BottomNavigationViewHelper;
 import com.seu.cose.easytrip.Override.MainViewPager;
 import com.seu.cose.easytrip.R;
-import com.seu.cose.easytrip.fragment.*;
+import com.seu.cose.easytrip.fragment.main.CommunityFragment;
+import com.seu.cose.easytrip.fragment.main.HomeFragment;
+import com.seu.cose.easytrip.fragment.main.MineFragment;
+import com.seu.cose.easytrip.fragment.main.ToolsFragment;
 import com.seu.cose.xutils3.BaseAppCompatActivity;
+import com.seu.cose.xutils3.BaseAppFragment;
+import com.seu.cose.xutils3.EasyTripApplication;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
@@ -32,21 +39,23 @@ import java.util.List;
 public class MainActivity extends BaseAppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    @ViewInject(value = R.id.viewpager)
+    @ViewInject(value = R.id.viewpager_main)
         private MainViewPager vp;
-    private MenuItem menuItem;
+    //private MenuItem menuItem;
+
+    private boolean mIsExit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        List<Fragment> fragmentsList = new ArrayList<>();
+        List<BaseAppFragment> fragmentsList = new ArrayList<>();
         //添加Fragment到集合
         fragmentsList.add(new HomeFragment());
         fragmentsList.add(new CommunityFragment());
-        fragmentsList.add(new Fragment());
+        fragmentsList.add(new BaseAppFragment());
         fragmentsList.add(new ToolsFragment());
-        fragmentsList.add(new MyInfoFragment());
+        fragmentsList.add(new MineFragment());
 
         //设置适配器
         FragAdapter fragAdapter = new FragAdapter(getSupportFragmentManager(), fragmentsList);
@@ -63,8 +72,8 @@ public class MainActivity extends BaseAppCompatActivity
         post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(MainActivity.this, ArticleActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -75,6 +84,7 @@ public class MainActivity extends BaseAppCompatActivity
             @Override
             public void onPageSelected(int position) {
 
+                /*
                 if (menuItem != null) {
                     menuItem.setChecked(false);
                 } else {
@@ -82,6 +92,7 @@ public class MainActivity extends BaseAppCompatActivity
                 }
                 menuItem = navigation.getMenu().getItem(position);
                 menuItem.setChecked(true);
+                */
 
             }
 
@@ -95,7 +106,7 @@ public class MainActivity extends BaseAppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+        drawer.addDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -186,6 +197,32 @@ public class MainActivity extends BaseAppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    /**
+     * 双击返回键退出
+     */
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (mIsExit) {
+                this.finish();
+
+            } else {
+                Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show();
+                mIsExit = true;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mIsExit = false;
+                    }
+                }, 2000);
+            }
+            return true;
+        }
+
+        return super.onKeyDown(keyCode, event);
     }
 
 }

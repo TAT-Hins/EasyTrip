@@ -15,6 +15,8 @@ public class BaseAppCompatActivity extends AppCompatActivity {
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EasyTripApplication app = (EasyTripApplication) getApplication();//获取应用程序全局的实例引用
+        app.activities.add(this);  //把当前Activity放入集合中
         // 仅竖屏显示
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         /*
@@ -22,6 +24,12 @@ public class BaseAppCompatActivity extends AppCompatActivity {
           工程模块中的所有Activity需要继承当前BaseAppCompatActivity父类，从而继承视图注入模式
         */
         x.view().inject(this);
+    }
+
+    protected void onDestroy(){
+        EasyTripApplication app = (EasyTripApplication) getApplication();//获取应用程序全局的实例引用
+        app.activities.remove(this); //把当前Activity从集合中移除
+        super.onDestroy();
     }
 
 }

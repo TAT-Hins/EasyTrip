@@ -40,7 +40,7 @@
             app:borderWidth="0dp"
             app:layout_anchor="@+id/include2"
             app:layout_anchorGravity="bottom|center_horizontal"
-            app:srcCompat="@drawable/ic_add" />
+            app:srcCompat="@drawable/ic_add_main" />
 
     </android.support.design.widget.CoordinatorLayout>
 

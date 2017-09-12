@@ -19,6 +19,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {
@@ -29,4 +30,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:26.+'
     testCompile 'junit:junit:4.12'
     compile 'org.xutils:xutils:3.5.0'
+    compile files('libs/BaiduLBS_Android.jar')
 }
