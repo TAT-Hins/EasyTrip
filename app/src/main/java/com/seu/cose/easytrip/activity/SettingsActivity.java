@@ -7,7 +7,10 @@ import com.seu.cose.easytrip.Override.FragAdapter;
 import com.seu.cose.easytrip.Override.MainViewPager;
 import com.seu.cose.easytrip.R;
 import com.seu.cose.easytrip.fragment.settings.MessageListFragment;
+import com.seu.cose.easytrip.fragment.settings.MyArticleFragment;
 import com.seu.cose.easytrip.fragment.settings.MyCollectionFragment;
+import com.seu.cose.easytrip.fragment.settings.MyFansFragment;
+import com.seu.cose.easytrip.fragment.settings.MyFolloweeFragment;
 import com.seu.cose.easytrip.fragment.settings.MyFriendsFragment;
 import com.seu.cose.easytrip.fragment.settings.UserInfoFragment;
 import com.seu.cose.xutils3.BaseAppCompatActivity;
@@ -47,15 +50,15 @@ public class SettingsActivity extends BaseAppCompatActivity {
                 setTitle("修改资料");
                 break;
             case 1:
-                fragmentList.add(new MyFriendsFragment());
+                fragmentList.add(new MyArticleFragment());
                 setTitle("我的文章");
                 break;
             case 2:
-                fragmentList.add(new MyCollectionFragment());
+                fragmentList.add(new MyFolloweeFragment());
                 setTitle("我的关注");
                 break;
             case 3:
-                fragmentList.add(new UserInfoFragment());
+                fragmentList.add(new MyFansFragment());
                 setTitle("我的粉丝");
                 break;
             case 4:

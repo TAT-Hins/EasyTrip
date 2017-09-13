@@ -22,11 +22,11 @@ import org.xutils.view.annotation.ViewInject;
 import java.util.ArrayList;
 import java.util.List;
 
-@ContentView(R.layout.fragment_my_collection)
-public class MyCollectionFragment extends BaseAppFragment {
+@ContentView(R.layout.fragment_my_article)
+public class MyArticleFragment extends BaseAppFragment {
 
-    @ViewInject(R.id.collection_recyclerview)
-        private RecyclerView mRecyclerView;
+    @ViewInject(R.id.myarticle_recyclerview)
+    private RecyclerView mRecyclerView;
 
     private List<CardViewContainer> cards = new ArrayList<>();
     private int[] mCardImageId = new int[]{R.drawable.card_a, R.drawable.card_b, R.drawable.card_c, R.drawable.card_d, R.drawable.card_e};
