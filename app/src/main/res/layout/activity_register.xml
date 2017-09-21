@@ -8,6 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/registerbg"
     tools:context="com.seu.cose.easytrip.activity.RegisterActivity">
 
     <ScrollView
@@ -19,8 +20,38 @@
             android:id="@+id/account_register_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:background="#50323232" >
 
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1">
+
+                <ImageView
+                    android:id="@+id/logoImage_register"
+                    android:layout_width="118dp"
+                    android:layout_height="118dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/ic_launcher_round"></ImageView>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1">
+
+                <ImageView
+                    android:id="@+id/image_2"
+                    android:layout_width="94dp"
+                    android:layout_height="33dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/et"></ImageView>
+
+            </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -28,23 +59,15 @@
                 <AutoCompleteTextView
                     android:id="@+id/account_register"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="45dip"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="15dp"
                     android:hint="@string/prompt_account"
                     android:inputType="textEmailAddress"
-                    android:maxLines="1" />
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <AutoCompleteTextView
-                    android:id="@+id/userName_register"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/prompt_userName"
-                    android:inputType="textEmailAddress"
+                    android:background="#33333332"
+                    android:paddingLeft="10dip"
+                    android:textColorHint="#AAAAAA"
                     android:maxLines="1" />
 
             </android.support.design.widget.TextInputLayout>
@@ -56,12 +79,18 @@
                 <EditText
                     android:id="@+id/password_register"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="45dip"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="15dp"
                     android:hint="@string/prompt_userPswd"
                     android:imeActionId="@+id/register"
                     android:imeActionLabel="@string/action_register"
                     android:imeOptions="actionUnspecified"
                     android:inputType="textPassword"
+                    android:background="#33333332"
+                    android:paddingLeft="10dip"
+                    android:textColorHint="#AAAAAA"
                     android:maxLines="1" />
 
             </android.support.design.widget.TextInputLayout>
@@ -71,7 +100,9 @@
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="12dp"
                 android:text="@string/action_register"
                 android:textStyle="bold" />
 

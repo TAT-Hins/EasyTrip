@@ -1,7 +1,5 @@
 package com.seu.cose.easytrip.fragment.settings;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -10,12 +8,13 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.seu.cose.easytrip.Override.FriendListSideBar;
-import com.seu.cose.easytrip.Override.SortAdapter;
+import com.seu.cose.easytrip.adapter.SortAdapter;
 import com.seu.cose.easytrip.Override.User;
 import com.seu.cose.easytrip.R;
 import com.seu.cose.xutils3.BaseAppFragment;
 
 import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.ViewInject;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,9 +23,11 @@ import java.util.Collections;
 @ContentView(R.layout.fragment_my_friends)
 public class MyFriendsFragment extends BaseAppFragment {
 
-    private ListView listView;
-    private FriendListSideBar friendListSideBar;
-    private ArrayList<User> list =new ArrayList<>();
+    @ViewInject(R.id.listView_friends)
+        private ListView listView;
+    @ViewInject(R.id.side_bar_friends)
+        private FriendListSideBar friendListSideBar;
+    private ArrayList<User> list = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,7 +47,6 @@ public class MyFriendsFragment extends BaseAppFragment {
         Collections.sort(list);
         SortAdapter adapter = new SortAdapter(this.getActivity(), list);
         listView.setAdapter(adapter);
-
 
     }
 
@@ -96,8 +96,6 @@ public class MyFriendsFragment extends BaseAppFragment {
     }
 
     private void initView(View v) {
-        listView = (ListView) v.findViewById(R.id.listView);
-        friendListSideBar = (FriendListSideBar) v.findViewById(R.id.side_bar);
         friendListSideBar.setOnStrSelectCallBack(new FriendListSideBar.ISideBarSelectCallBack() {
             @Override
             public void onSelectStr(int index, String selectStr) {

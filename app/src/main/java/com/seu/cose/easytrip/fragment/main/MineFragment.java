@@ -2,16 +2,21 @@ package com.seu.cose.easytrip.fragment.main;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.seu.cose.easytrip.Override.FileMethods;
 import com.seu.cose.easytrip.R;
+import com.seu.cose.easytrip.activity.MainActivity;
 import com.seu.cose.easytrip.activity.SettingsActivity;
 import com.seu.cose.easytrip.fragment.settings.MessageListFragment;
 import com.seu.cose.xutils3.BaseAppFragment;
@@ -20,6 +25,7 @@ import com.seu.cose.xutils3.EasyTripApplication;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 
+import java.io.File;
 import java.util.List;
 
 @ContentView(R.layout.fragment_mine)
@@ -46,6 +52,19 @@ public class MineFragment extends BaseAppFragment {
     @ViewInject(R.id.quit)
         private LinearLayout quitApp;
 
+    @ViewInject(R.id.user_name)
+        private TextView nameShow;
+    @ViewInject(R.id.user_ID)
+        private TextView iDShow;
+    @ViewInject(R.id.head_image)
+        private ImageView userPhoto;
+    @ViewInject(R.id.followee_number)
+        private TextView followeeNum;
+    @ViewInject(R.id.fans_number)
+        private TextView fansNum;
+
+    private static EasyTripApplication app;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -57,6 +76,13 @@ public class MineFragment extends BaseAppFragment {
     public void  onActivityCreated(@Nullable Bundle saveInstanceState) {
 
         super.onActivityCreated(saveInstanceState);
+        app = (EasyTripApplication) getActivity().getApplication();
+
+        nameShow.setText(app.getUserInfo().getUserName());
+        iDShow.setText("@" + app.getUser().getAccount());
+        followeeNum.setText(app.getUserInfo().getFolloweeNum().toString());
+        fansNum.setText(app.getUserInfo().getFanNum().toString());
+//        userPhoto.setImageURI(Uri.fromFile(((MainActivity)getActivity()).userPhotoFile));
 
         View.OnClickListener listener = new View.OnClickListener() {
             @Override

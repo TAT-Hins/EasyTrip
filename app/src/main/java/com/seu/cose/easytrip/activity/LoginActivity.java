@@ -19,11 +19,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.seu.cose.easytrip.Override.GsonPaserUtils;
 import com.seu.cose.easytrip.R;
 import com.seu.cose.xutils3.BaseAppCompatActivity;
 import com.seu.cose.xutils3.EasyTripApplication;
 import com.seu.cose.xutils3.XUtilsTools;
+import com.seu.cose.xutils3.pojo.UserInfo;
 import com.seu.cose.xutils3.pojo.UserLogin;
 
 import org.xutils.common.Callback;
@@ -43,12 +45,7 @@ public class LoginActivity extends BaseAppCompatActivity {
     /**
      * Id to identity READ_CONTACTS permission request.
      */
-    private static final int REQUEST_READ_CONTACTS = 0;
     private static final String TAG = "LoginActivity";
-
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
@@ -80,13 +77,20 @@ public class LoginActivity extends BaseAppCompatActivity {
         });
 
         Button mAccountSignInButton = (Button) findViewById(R.id.account_sign_in_button);
+        Button mAccountRegisterButton = (Button) findViewById(R.id.register_go_to_button);
         mAccountSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 attemptLogin();
             }
         });
-
+        mAccountRegisterButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     /**
@@ -101,8 +105,8 @@ public class LoginActivity extends BaseAppCompatActivity {
         mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
-        String userAccount = mAccountView.getText().toString();
-        String userPswd = mPasswordView.getText().toString();
+        final String userAccount = mAccountView.getText().toString();
+        final String userPswd = mPasswordView.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
@@ -132,7 +136,12 @@ public class LoginActivity extends BaseAppCompatActivity {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            loginToServer(userAccount, userPswd);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    loginToServer(userAccount, userPswd);
+                }
+            }).start();
         }
     }
 
@@ -179,33 +188,63 @@ public class LoginActivity extends BaseAppCompatActivity {
         Map<String, String> params = new HashMap<>();
         params.put("password", password);
         params.put("account", account);
-        XUtilsTools.Post(getResources().getString(R.string.server_url) + "/userLogin/login", params, new Callback.CommonCallback<String>() {
+        XUtilsTools.Post(getResources().getString(R.string.server_url) + "/user/login", params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                Log.i(TAG,result);
+                Log.i(TAG, result);
                 GsonPaserUtils gsonPaserUtils = new GsonPaserUtils();
                 UserLogin userBean = (UserLogin) gsonPaserUtils.convertToObj(result, UserLogin.class);
                 if(userBean != null){
-                    //EasyTripApplication application = (EasyTripApplication)getApplication();
-                    //application.setLoginUser(loginUsers);
-                    Toast.makeText(getApplicationContext(), "你好, "+ userBean.getUserName(), Toast.LENGTH_LONG).show();
-                    // 跳转返回
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(intent);
+                    Toast.makeText(getApplicationContext(), "欢迎登陆EasyTrip", Toast.LENGTH_LONG).show();
+                    EasyTripApplication app = (EasyTripApplication) getApplication();
+                    app.setUser(userBean);
+                    Map<String, String> params = new HashMap<String, String>();
+                    Log.i(TAG, app.getUser().getId().toString());
+                    params.put("id", app.getUser().getId().toString());
+                    XUtilsTools.Post(getResources().getString(R.string.server_url) + "/user/getInfo", params, new Callback.CommonCallback<String>() {
+                        @Override
+                        public void onSuccess(String result){
+                            Log.i(TAG, result);
+                            Gson gson = new Gson();
+                            UserInfo userInfo = gson.fromJson(result, UserInfo.class);
+                            if (userInfo != null){
+                                Toast.makeText(getApplicationContext(), "获取资料成功 "+ userInfo.getUserName(), Toast.LENGTH_LONG).show();
+                                EasyTripApplication app = (EasyTripApplication) getApplication();
+                                app.setUserInfo(userInfo);
+                                // 跳转返回
+                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                startActivity(intent);
+                            } else {
+                                Toast.makeText(getApplicationContext(), "获取资料失败！", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                        @Override
+                        public void onCancelled(CancelledException cex) {   }
+                        @Override
+                        public void onError(Throwable ex, boolean isOnCallback) {   }
+                        @Override
+                        public void onFinished() {}
+                    });
+
                 }else{
-                    Toast.makeText(getApplicationContext(), "登录失败", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "登录失败！", Toast.LENGTH_LONG).show();
+                    showProgress(false);
                 }
             }
 
             @Override
-            public void onCancelled(CancelledException cex) {   }
+            public void onCancelled(CancelledException cex) {
+                showProgress(false);
+            }
 
             @Override
-            public void onError(Throwable ex, boolean isOnCallback) {   }
+            public void onError(Throwable ex, boolean isOnCallback) {
+                Toast.makeText(getApplicationContext(), "登录出错！", Toast.LENGTH_LONG).show();
+                showProgress(false);
+            }
 
             @Override
             public void onFinished() {
-
             }
         });
     }

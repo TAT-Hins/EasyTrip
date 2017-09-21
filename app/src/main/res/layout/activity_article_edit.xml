@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.seu.cose.easytrip.activity.ArticleEditActivity">
+
+    <android.support.v7.widget.Toolbar
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/toolbar_articleEdit"
+        android:title="@string/title_activity_main"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:popupTheme="@style/AppTheme.PopupOverlay">
+
+        <Button
+            android:id="@+id/sendArticleButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="发布"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:layout_gravity="right|center_vertical"
+            android:clickable="false"
+            android:background="?attr/colorPrimary"/>
+
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/titleShow_article"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:gravity="center_vertical|left"
+            android:layout_marginLeft="15dp"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:text="标题" />
+
+        <EditText
+            android:id="@+id/titleSet_article"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/bg_edittext" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/labelOneShow_article"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical|left"
+                android:layout_marginLeft="15dp"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                android:text="标签1（）" />
+
+            <TextView
+                android:id="@+id/labelTwoShow_article"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical|left"
+                android:layout_marginLeft="15dp"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                android:text="标签2（地点）" />
+
+            <TextView
+                android:id="@+id/labelThreeShow_article"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical|left"
+                android:layout_marginLeft="15dp"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                android:text="标签3（）" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/labelOneSet_article"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:background="@drawable/bg_edittext" />
+
+            <EditText
+                android:id="@+id/labelTwoSet_article"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:background="@drawable/bg_edittext" />
+
+            <EditText
+                android:id="@+id/labelThreeSet_article"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:background="@drawable/bg_edittext" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/contentShow_article"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical|left"
+                android:layout_marginLeft="15dp"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:text="正文" />
+
+            <ImageButton
+                android:layout_marginRight="20dp"
+                android:imeActionId="@+id/addImage"
+                android:imeActionLabel="添加图片"
+                android:id="@+id/imageAddButton_article"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|right"
+                android:background="#00000000"
+                android:src="@drawable/ic_photoadd_article"/>
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/contentSet_article"
+            android:background="@drawable/bg_edittext"
+            android:gravity="top"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginBottom="15dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

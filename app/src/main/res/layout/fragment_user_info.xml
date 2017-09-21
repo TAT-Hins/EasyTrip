@@ -12,10 +12,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:layout_marginTop="10dp"
         android:divider="@drawable/linearlayout_divider"
-        android:showDividers="middle"
-        android:layout_marginTop="10dp">
+        android:orientation="vertical"
+        android:showDividers="middle">
 
         <LinearLayout
             android:id="@+id/userinfo_head"
@@ -35,13 +35,12 @@
                 android:textColor="@color/textColor" />
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/userPhotoView"
                 android:layout_width="67dp"
                 android:layout_height="match_parent"
                 app:srcCompat="@drawable/ic_blank_head" />
 
             <ImageView
-                android:id="@+id/imageView3"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 app:srcCompat="@drawable/ic_next" />
@@ -64,6 +63,7 @@
                 android:textColor="@color/textColor" />
 
             <TextView
+                android:id="@+id/account_userInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1.18"
@@ -93,7 +93,8 @@
                 android:text="用户名"
                 android:textColor="@color/textColor" />
 
-            <TextView
+            <EditText
+                android:id="@+id/userName_userInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1.18"
@@ -124,6 +125,7 @@
                 android:textColor="@color/textColor" />
 
             <TextView
+                android:id="@+id/sex_userInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1.18"
@@ -152,7 +154,8 @@
                 android:text="年龄"
                 android:textColor="@color/textColor" />
 
-            <TextView
+            <EditText
+                android:id="@+id/age_userInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1.18"
@@ -164,5 +167,36 @@
                 android:layout_height="match_parent"
                 app:srcCompat="@drawable/ic_next" />
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/userinfo_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/background_light"
+            android:orientation="horizontal"
+            android:padding="7dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1.18"
+                android:gravity="center_vertical|left"
+                android:text="地址"
+                android:textColor="@color/textColor" />
+
+            <EditText
+                android:id="@+id/address_userInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1.18"
+                android:gravity="center_vertical|right"
+                android:text="地址" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_next" />
+        </LinearLayout>
+
     </LinearLayout>
 </FrameLayout>

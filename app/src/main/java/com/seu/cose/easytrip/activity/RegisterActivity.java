@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
@@ -19,11 +20,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.seu.cose.easytrip.Override.GsonPaserUtils;
 import com.seu.cose.easytrip.R;
 import com.seu.cose.xutils3.BaseAppCompatActivity;
 import com.seu.cose.xutils3.EasyTripApplication;
 import com.seu.cose.xutils3.XUtilsTools;
+import com.seu.cose.xutils3.pojo.UserInfo;
 import com.seu.cose.xutils3.pojo.UserLogin;
 
 import org.xutils.common.Callback;
@@ -37,7 +40,7 @@ import java.util.Map;
  * A login screen that offers login via email/password.
  */
 
-@ContentView(R.layout.activity_login)
+@ContentView(R.layout.activity_register)
 public class RegisterActivity extends BaseAppCompatActivity {
 
     /**
@@ -47,27 +50,18 @@ public class RegisterActivity extends BaseAppCompatActivity {
     private static final String TAG = "LoginActivity";
 
     /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
-    /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
 
     // UI references.
     @ViewInject(R.id.account_register)
         private AutoCompleteTextView mAccountView;
-    @ViewInject(R.id.userName_register)
-        private AutoCompleteTextView mUserNameView;
     @ViewInject(R.id.password_register)
         private EditText mPasswordView;
     @ViewInject(R.id.register_progress)
         private View mProgressView;
     @ViewInject(R.id.register_form)
-        private View mLoginFormView;
+        private View mRegisterFormView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,18 +72,18 @@ public class RegisterActivity extends BaseAppCompatActivity {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                 if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
+                    attemptRegister();
                     return true;
                 }
                 return false;
             }
         });
 
-        Button mAccountSignInButton = (Button) findViewById(R.id.account_sign_in_button);
+        Button mAccountSignInButton = (Button) findViewById(R.id.account_register_button);
         mAccountSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
+                attemptRegister();
             }
         });
 
@@ -100,7 +94,7 @@ public class RegisterActivity extends BaseAppCompatActivity {
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
-    private void attemptLogin() {
+    private void attemptRegister() {
 
         // Reset errors.
         mAccountView.setError(null);
@@ -138,7 +132,7 @@ public class RegisterActivity extends BaseAppCompatActivity {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            loginToServer(userAccount, userPswd);
+            registerUser(userAccount, userPswd);
         }
     }
 
@@ -162,12 +156,12 @@ public class RegisterActivity extends BaseAppCompatActivity {
         // the progress spinner.
         int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
-        mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-        mLoginFormView.animate().setDuration(shortAnimTime).alpha(
+        mRegisterFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+        mRegisterFormView.animate().setDuration(shortAnimTime).alpha(
                 show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
-                mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+                mRegisterFormView.setVisibility(show ? View.GONE : View.VISIBLE);
             }
         });
 
@@ -181,25 +175,24 @@ public class RegisterActivity extends BaseAppCompatActivity {
         });
     }
 
-    private void loginToServer(String account, String password){
+    private void registerUser(String account, String password){
         Map<String, String> params = new HashMap<>();
-        params.put("password", password);
+        params.put("id", "0");
         params.put("account", account);
-        XUtilsTools.Post(getResources().getString(R.string.server_url) + "/userLogin/login", params, new Callback.CommonCallback<String>() {
+        params.put("password", password);
+        XUtilsTools.Post(getResources().getString(R.string.server_url) + "/user/register", params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                Log.i(TAG,result);
-                GsonPaserUtils gsonPaserUtils = new GsonPaserUtils();
-                UserLogin userBean = (UserLogin) gsonPaserUtils.convertToObj(result, UserLogin.class);
-                if(userBean != null){
+                Log.i(TAG, result);
+                Gson gson = new Gson();
+                Map<String, String> userBean = gson.fromJson(result, HashMap.class);
+                if(userBean.get("id") != "0"){
                     //EasyTripApplication application = (EasyTripApplication)getApplication();
                     //application.setLoginUser(loginUsers);
-                    Toast.makeText(getApplicationContext(), "你好, "+ userBean.getUserName(), Toast.LENGTH_LONG).show();
-                    // 跳转返回
-                    Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-                    startActivity(intent);
-                }else{
-                    Toast.makeText(getApplicationContext(), "登录失败", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "注册成功！请退出重新登录！", Toast.LENGTH_LONG).show();
+                    onBackPressed();
+                }else {
+                    Toast.makeText(getApplicationContext(), "注册失败", Toast.LENGTH_LONG).show();
                 }
             }
 

@@ -1,6 +1,7 @@
 package com.seu.cose.easytrip.fragment.settings;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,9 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.seu.cose.easytrip.Override.MessageViewAdapter;
 import com.seu.cose.easytrip.Override.MessageViewContainer;
 import com.seu.cose.easytrip.R;
+import com.seu.cose.easytrip.activity.ChatActivity;
+import com.seu.cose.easytrip.adapter.MessageViewAdapter;
 import com.seu.cose.xutils3.BaseAppFragment;
 
 import org.xutils.view.annotation.ContentView;
@@ -53,6 +55,13 @@ public class MessageListFragment extends BaseAppFragment {
         recycleAdapter = new MessageViewAdapter(MessageListFragment.this.getActivity(), mDatas);
         //设置Adapter
         mRecyclerView.setAdapter(recycleAdapter);
+        recycleAdapter.setOnItemClickListener(new MessageViewAdapter.OnRecyclerViewItemClickListener() {
+            @Override
+            public void onItemClick(View view, MessageViewContainer datas) {
+                Intent intent = new Intent(MessageListFragment.this.getActivity(), ChatActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 

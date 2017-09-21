@@ -12,8 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.seu.cose.easytrip.Override.CardViewContainer;
-import com.seu.cose.easytrip.Override.RecyclerViewAdapter;
 import com.seu.cose.easytrip.R;
+import com.seu.cose.easytrip.adapter.CRecyclerViewAdapter;
 import com.seu.cose.xutils3.BaseAppFragment;
 
 import org.xutils.view.annotation.ContentView;
@@ -31,7 +31,7 @@ public class MyCollectionFragment extends BaseAppFragment {
     private List<CardViewContainer> cards = new ArrayList<>();
     private int[] mCardImageId = new int[]{R.drawable.card_a, R.drawable.card_b, R.drawable.card_c, R.drawable.card_d, R.drawable.card_e};
     private String[] mCardIntro = new String[]{"李时珍的皮", "今年国庆放8天", "没想到吧", "嘻嘻，SB", "你老婆正吃辣条呢"};
-    private RecyclerViewAdapter recyclerViewAdapter;
+    private CRecyclerViewAdapter crecyclerViewAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,14 +45,15 @@ public class MyCollectionFragment extends BaseAppFragment {
 
         super.onActivityCreated(saveInstanceState);
 
-        for (int i=0; i<5; i++){
+        /*for (int i=0; i<5; i++){
             cards.add(new CardViewContainer(mCardIntro[i], "作者" + i, mCardImageId[i]));
-        }
+        }*/
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerViewAdapter = new RecyclerViewAdapter(this.getActivity(), cards);
-        mRecyclerView.setAdapter(recyclerViewAdapter);
+        mRecyclerView.setHasFixedSize(true);
+        crecyclerViewAdapter = new CRecyclerViewAdapter(this.getActivity(), cards);
+        mRecyclerView.setAdapter(crecyclerViewAdapter);
 
     }
 
